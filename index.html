@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>My Task</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>My Tasks</h1>
+      </header>
+      <hr />
+      <main>
+        <div id="add">
+          <input type="text" id="data" placeholder="Add Your Task" />
+          <button id="add-btn">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+          </button>
+        </div>
+        <nav>
+          <ul id="myList" class="myList"></ul>
+          <ul id="completedList" class="myList"></ul>
+        </nav>
+      </main>
+    </div>
+
+    <script>
+      //functions
+      //Add Tasks
+      function createTask() {
+        var data = document.getElementById('data').value;
+
+        if (data) {
+          createTasks(data);
+          document.getElementById('data').value = '';
+        }
+        function createTasks(data) {
+          //createlist
+          var myList = document.getElementById('myList');
+          var completedList = document.getElementById('completedList');
+          var li = document.createElement('li');
+          var div = document.createElement('div');
+          var p = document.createElement('p');
+          div.classList.add('buttons');
+          div.innerHTML = `
+          <i class="fa fa-trash-o" aria-hidden="true">
+          </i>
+          <i class="fa fa-check-circle-o" aria-hidden="true"></i> 
+          `;
+          p.innerText = data;
+          //Check Button Event
+          div.addEventListener('click', checkButton);
+          //function checkButton
+          function checkButton(e) {
+            var targetClass = e.target.getAttribute('class');
+            if (targetClass == 'fa fa-trash-o') {
+              var target = e.target;
+              removeTask();
+            }
+            if (targetClass == 'fa fa-check-circle-o') {
+              var target = e.target;
+              completedTask();
+            }
+            //Remove Tasks
+            function removeTask(e) {
+              var removeEl = target.parentNode.parentNode;
+              var lists = removeEl.parentNode;
+              var listsID = lists.id;
+              if (listsID == 'myList') {
+                lists.removeChild(removeEl);
+              } else {
+                lists.removeChild(removeEl);
+              }
+            }
+            //Completed Task
+            function completedTask() {
+              var completedEl = target.parentElement.parentElement;
+              myList.removeChild(completedEl);
+              completedList.insertBefore(
+                completedEl,
+                completedList.childNodes[0]
+              );
+            }
+          }
+          //appendList
+          li.appendChild(p);
+          li.appendChild(div);
+          myList.insertBefore(li, myList.childNodes[0]);
+        }
+      }
+      //Events
+      document.getElementById('add-btn').addEventListener('click', createTask);
+    </script>
+  </body>
+</html>
