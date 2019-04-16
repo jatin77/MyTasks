@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body {
+  padding: 0;
+  margin: 0 10px;
+  background: #f8f8ff;
+  color: #1a1a1a;
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+
+}
+
+/*ADD Tasks*/
+#add {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  height: 40px;
+  bottom: 20px;
+}
+
+#add input {
+  width: 80%;
+  height: 100%;
+  padding: 0;
+  outline: none;
+  border: none;
+  text-indent: 20px;
+  padding-right: 10px;
+
+}
+
+#add button {
+  width: 10%;
+  background: crimson;
+  color: #f8f8ff;
+  outline: none;
+  border: none;
+
+}
+
+#add button i {
+  font-size: 20px;
+}
+
+
+
+/*My task list*/
+nav {
+  margin-top: 40px;
+}
+
+.myList {
+  padding: 0;
+  margin: 0;
+}
+
+.myList li {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+
+}
+
+.myList li p {
+  font-size: 18px;
+}
+
+.myList li .buttons {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-self: end;
+  font-size: 18px;
+}
+
+.myList li .buttons i {
+  cursor: pointer;
+}
+
+.myList li .buttons i:first-of-type {
+  margin-right: 10px;
+  color: #EE82EE;
+}
+
+.myList li .buttons i:last-of-type {
+  color: #7fffd4;
+}
+
+.myList li .buttons i:last-of-type:hover {
+  color: #00FA9A;
+}
+
+
+.myList li .buttons i:first-of-type:hover {
+  color: #FF00FF;
+}
+
+
+
+/*COMPLETED LIST*/
+#completedList .buttons i:last-of-type {
+  color: #00FA9A;
+}
+
+ul.myList#completedList:not(:empty) {
+  padding-top: 60px;
+  position: relative;
+}
+
+ul.myList#completedList:not(:empty):before {
+  content: "";
+  width: 150px;
+  height: 1px;
+  background: #696969;
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  margin: 0 0 0 -75px;
+}
